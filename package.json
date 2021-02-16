@@ -1,0 +1,24 @@
+{
+  "name": "dyndns-updater",
+  "version": "0.0.1",
+  "description": "A Updater for DynDNS services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Flo2410/DynDNS-Updater.git"
+  },
+  "author": "Florian Hye",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Flo2410/DynDNS-Updater/issues"
+  },
+  "homepage": "https://github.com/Flo2410/DynDNS-Updater#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0"
+  }
+}
