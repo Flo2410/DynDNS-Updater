@@ -31,14 +31,14 @@ mv .env_default .env
 
 5. Edit the `.env` file with your information
 
-  -`DDNS_PROVIDER_URL` The URL-Endpoint for updating a ddns entry from your provider.
+  `DDNS_PROVIDER_URL` The URL-Endpoint for updating a ddns entry from your provider.
   
-  -`DDNS_PROVIDER_USERNASME` The username for authenticating with your provider.
+  `DDNS_PROVIDER_USERNASME` The username for authenticating with your provider.
   
-  -`DDNS_PROVIDER_PASSWORD` The password for authenticating with your provider.
+  `DDNS_PROVIDER_PASSWORD` The password for authenticating with your provider.
   
-  -`DDNS_HOSTNAME` The hostname that you want to update.
-  
+  `DDNS_HOSTNAME` The hostname that you want to update.
+ 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
