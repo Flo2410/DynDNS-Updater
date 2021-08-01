@@ -1,0 +1,13 @@
+[Unit]
+Description=DynDNS-Updater is a basic tool to update your IP-Address in your ddns server.
+Documentation=https://github.com/Flo2410/DynDNS-Updater
+After=network.target
+
+[Service]
+Type=simple
+User=dietpi
+ExecStart=/usr/bin/node /home/dietpi/DynDNS-Updater/src/index.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
