@@ -6,7 +6,7 @@ After=network.target
 [Service]
 Type=simple
 User=dietpi
-ExecStart=/usr/bin/node /home/dietpi/DynDNS-Updater/src/index.js
+ExecStart=/usr/local/bin/node /home/dietpi/DynDNS-Updater/
 Restart=on-failure
 
 [Install]
