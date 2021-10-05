@@ -1,12 +1,12 @@
 require("dotenv").config();
-const axios = require("axios").default;
+const { get } = require("https");
+const { URL } = require("url");
 
 // console.log("url", process.env.DDNS_PROVIDER_URL);
 
-const URL =
-  process.env.DDNS_PROVIDER_URL + "?hostname=" + process.env.DDNS_HOSTNAME;
+const REQ_URL = process.env.DDNS_PROVIDER_URL + "?hostname=" + process.env.DDNS_HOSTNAME;
 
-console.log(`URL: ${URL} \n`);
+console.log(`URL: ${REQ_URL} \n`);
 
 // function that makes the requst
 const makeRequest = () => {
@@ -14,23 +14,23 @@ const makeRequest = () => {
 
   console.log(`[${d.toLocaleString()}] Updating...`);
 
-  axios
-    .get(URL, {
-      auth: {
-        username: process.env.DDNS_PROVIDER_USERNASME,
-        password: process.env.DDNS_PROVIDER_PASSWORD,
-      },
-    })
-    .then((res) => {
-      console.log(`[${d.toLocaleString()}] Status: ${res.status}`);
-      console.log(`[${d.toLocaleString()}] Data: ${res.data}`);
-      console.log("\n");
-    })
-    .catch((err) => {
-      console.log(`[${d.toLocaleString()}] Status: ${err.response.status}`);
-      console.log(`[${d.toLocaleString()}] Data: ${err.response.data}`);
-      console.log("\n");
-    });
+  const url = new URL(REQ_URL);
+
+  const options = {
+    hostname: url.hostname,
+    path: url.path,
+    auth: process.env.DDNS_PROVIDER_USERNASME + ":" + process.env.DDNS_PROVIDER_PASSWORD,
+  };
+
+  get(options, (res) => {
+    console.log(`[${d.toLocaleString()}] Status: ${res.statusCode}`);
+    console.log(`[${d.toLocaleString()}] Message: ${res.statusMessage}`);
+    console.log("\n");
+  }).on("error", (err) => {
+    console.log(`[${d.toLocaleString()}] Name: ${err.name}`);
+    console.log(`[${d.toLocaleString()}] Message: ${err.message}`);
+    console.log("\n");
+  });
 };
 
 //make initial request
