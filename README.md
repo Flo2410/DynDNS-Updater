@@ -44,6 +44,12 @@ mv .env_default .env
 
 5. Edit the `.env` file with your information as shown in [settings](#settings).
 
+6. Start the program
+
+```bash
+npm run start
+```
+
 ## 2. Docker
 
 Using the docker cli:
