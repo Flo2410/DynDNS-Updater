@@ -8,6 +8,10 @@ It is very simple. It just sends a `GET` reqeust to a specific domain.
 
 ## Usage
 
+It is posible to run `dyndns-updater` directly via nodejs or using Docker.
+
+## 1. Standalone
+
 1. Download this repo, either via git or as a zip file.
 
 ```bash
@@ -38,20 +42,44 @@ or
 mv .env_default .env
 ```
 
-5. Edit the `.env` file with your information
+5. Edit the `.env` file with your information as shown in [settings](#settings).
 
-`DDNS_PROVIDER_URL` The URL-Endpoint for updating a ddns entry from your provider.
+## 2. Docker
 
-`DDNS_PROVIDER_USERNASME` The username for authenticating with your provider.
+Using the docker cli:
 
-`DDNS_PROVIDER_PASSWORD` The password for authenticating with your provider.
+```bash
+docker run -d --rm --name dnydns-updater \
+-e DDNS_PROVIDER_URLS="your provider urls" \
+-e DDNS_PROVIDER_USERNASMES="your usernames" \
+-e DDNS_PROVIDER_PASSWORDS="your passowrds" \
+-e DDNS_HOSTNAMES="your hostnames" \
+ghcr.io/flo2410/dyndns-updater
+```
 
-`DDNS_HOSTNAME` The hostname that you want to update.
+or using docker-compose:
 
-## Contributing
+```yaml
+version: "3.9"
+services:
+  dyndns-updater:
+    image: ghcr.io/flo2410/dyndns-updater
+    environment:
+      - DDNS_PROVIDER_URLS="your provider urls"
+      - DDNS_PROVIDER_USERNASMES="your usernames"
+      - DDNS_PROVIDER_PASSWORDS="your passowrds"
+      - DDNS_HOSTNAMES="your hostnames"
+```
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## <a name="settings"></a>Settings
 
-## License
+All settings may have multiple values separated by a `semicolon`.
+For each hostname, the url, username and password with the corresponding index will be used. If there is no url, username or password with the index of the hostname, the last entry will be used. This allows to more easily use multiple hostnames with the same credentials.
 
-[MIT](https://choosealicense.com/licenses/mit/)
+`DDNS_PROVIDER_URLS` The URL-Endpoint for updating a ddns entry from your provider.
+
+`DDNS_PROVIDER_USERNASMES` The username for authenticating with your provider.
+
+`DDNS_PROVIDER_PASSWORDS` The password for authenticating with your provider.
+
+`DDNS_HOSTNAMES` The hostname that you want to update.
